@@ -1,3 +1,14 @@
+/**
+ * @Author: weijie
+ * @Date:   2017-09-15T09:10:22+08:00
+ * @Email:  weijie@rongyi.com
+ * @Filename: base.js
+ * @Last modified by:   weijie
+ * @Last modified time: 2017-09-15T11:16:21+08:00
+ */
+
+
+
 'use strict';
 let path = require('path');
 let defaultSettings = require('./defaults');
@@ -32,6 +43,7 @@ module.exports = {
     alias: {
       actions: `${defaultSettings.srcPath}/actions/`,
       components: `${defaultSettings.srcPath}/components/`,
+      containers: `${defaultSettings.srcPath}/containers/`,
       sources: `${defaultSettings.srcPath}/sources/`,
       stores: `${defaultSettings.srcPath}/stores/`,
       styles: `${defaultSettings.srcPath}/styles/`,

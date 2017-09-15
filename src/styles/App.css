@@ -1,21 +1,41 @@
+/**
+ * @Author: weijie
+ * @Date:   2017-09-15T09:10:22+08:00
+ * @Email:  weijie@rongyi.com
+ * @Filename: App.css
+ * @Last modified by:   weijie
+ * @Last modified time: 2017-09-15T13:47:53+08:00
+ */
+
+
+
 /* Base Application Styles */
 body {
   color: #fff;
   background: #222;
 }
 
-.index img {
-  margin: 40px auto;
-  border-radius: 4px;
-  background: #fff;
-  display: block;
+.clearfix::after {
+  clear: both;
+  display: table;
+  content: '';
 }
 
-.index .notice {
-  margin: 20px auto;
-  padding: 15px 0;
-  text-align: center;
-  border: 1px solid #000;
-  border-width: 1px 0;
-  background: #666;
+.page-header {
+  height: 44px;
+  line-height: 44px;
+  border-bottom: 1px solid #fff;
+}
+.page-header li {
+  float: left;
+  list-style: none;
+}
+.page-header li a {
+  float: left;
+  color: #fff;
+  padding: 5px;
+}
+
+.page-main {
+  padding: 20px;
 }
