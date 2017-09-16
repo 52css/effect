@@ -13,6 +13,11 @@
  import VideoBarrage from 'components/VideoBarrage';
 
  class VideoBarrageComponent extends React.Component {
+   /**
+    * [constructor 初始化弹幕]
+    * @param  {[type]} props [description]
+    * @return {[type]}       [description]
+    */
    constructor(props) {
      super(props);
      this.state = {
@@ -67,6 +72,11 @@
      }
    }
 
+   /**
+    * [handleAddBarrage 添加弹幕]
+    * @param  {[type]} obj [description]
+    * @return {[type]}     [description]
+    */
    handleAddBarrage(obj) {
      let barrageList = this.state.barrageList;
 
@@ -75,9 +85,12 @@
      this.setState({
        barrageList
      })
-
    }
 
+   /**
+    * [render react-绚烂]
+    * @return {[type]} [description]
+    */
    render() {
      let videoSrc = require('./images/video.mp4');
 
