@@ -12,14 +12,15 @@
 import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
+import {HashRouter} from 'react-router-dom';
 import App from './containers/App';
 
+let pathname = location.pathname;
 
 // Render the main component into the dom
 ReactDOM.render((
-  <BrowserRouter>
+  <HashRouter>
     <App/>
-  </BrowserRouter>), document.getElementById('app'));
+  </HashRouter>), document.getElementById('app'));
 
 // ReactDOM.render(<Main/>, document.getElementById('app'));
