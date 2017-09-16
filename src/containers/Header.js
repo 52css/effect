@@ -4,7 +4,7 @@
  * @Email:  weijie@rongyi.com
  * @Filename: Header.js
  * @Last modified by:   weijie
- * @Last modified time: 2017-09-15T13:56:21+08:00
+ * @Last modified time: 2017-09-16T10:47:05+08:00
  */
 
 
@@ -18,9 +18,9 @@
    <header className="page-header clearfix">
      <nav>
        <ul>
-         <li><Link to='/'>Home</Link></li>
+         <li><Link to=''>Home</Link></li>
          {/* <li><Link to='/test'>Test</Link></li> */}
-         <li><Link to='/video-barrage'>VideoBarrage</Link></li>
+         <li><Link to='video-barrage'>VideoBarrage</Link></li>
        </ul>
      </nav>
    </header>
