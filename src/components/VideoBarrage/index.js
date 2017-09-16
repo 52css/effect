@@ -2,7 +2,7 @@
 * @Author: weijie
 * @Date:   2017-09-14 20:38:54
  * @Last modified by:   weijie
- * @Last modified time: 2017-09-15T21:26:00+08:00
+ * @Last modified time: 2017-09-16T10:40:21+08:00
 */
 import React from 'react';
 import './index.css';
@@ -12,6 +12,7 @@ class VideoBarrageComponent extends React.Component {
       super(props);
       this.state = {
         canSubmit: false,
+        value: '',
         opacity: 100,
         fontSize: 24,
         position: 'all',  //all 0,1 top 0,0.3 bottom 0.7,1
@@ -22,39 +23,45 @@ class VideoBarrageComponent extends React.Component {
   componentWillMount() {
   }
 
+  /**
+   * [componentDidMount dom加载完毕]
+   * @return {[type]} [description]
+   */
   componentDidMount() {
     let { videoSrc } = this.props,
       elVideo = this.refs.video,
       canvas = this.refs.barrage,
       self = this;
 
+    // 给视频添加路径，通过父传递进来
     this.refs.video.src = videoSrc;
-    this.refs.opacity.value = this.state.opacity;
-    this.refs.fontSize.value = this.state.fontSize;
-    this.refs.color.value = this.state.color;
 
+    // 给canvas重新设置宽高
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
 
+    // 视频开始播放
     elVideo.addEventListener('play', () => {
       self.isPause = false;
       self.canvasRender();
       // self.addText('2134');
     });
+
+    // 暂停播放
     elVideo.addEventListener('pause', () => {
       self.isPause = true;
     });
 
+    // 拖拽视频
     elVideo.addEventListener('seeked', function () {
   		// 跳转播放需要清屏
   		self.reset();
   	});
-    // elVideo.addEventListener('seeked', () => {
-    //   // 跳转播放需要清屏
-    //   top.reset();
-    // });
   }
 
+  /**
+   * [reset 清楚屏，并且更新弹幕是否显示属性]
+   */
   reset() {
     let canvas = this.refs.barrage,
       video = this.refs.video,
@@ -84,6 +91,10 @@ class VideoBarrageComponent extends React.Component {
       });
   }
 
+  /**
+   * [clearRect 清空canvas]
+   * @return {[type]} [description]
+   */
   clearRect() {
     let canvas = this.refs.barrage,
       context = canvas.getContext('2d'),
@@ -96,6 +107,10 @@ class VideoBarrageComponent extends React.Component {
     context.fillRect(0, 0, canvasWidth, canvasHeight);
   }
 
+  /**
+   * [draw 绘制canvas]
+   * @return {[type]} [description]
+   */
   draw() {
     let time = this.refs.video.currentTime,
       canvas = this.refs.barrage,
@@ -116,7 +131,7 @@ class VideoBarrageComponent extends React.Component {
       range = [0.7, 1];
     }
 
-    barrageList.forEach((barrage, index) => {
+    barrageList.forEach((barrage) => {
       if (barrage && !barrage.disabled && time >= barrage.time) {
         let fontSize = barrage.fontSize || 24;
         metrics = context.measureText(barrage.value)
@@ -130,7 +145,7 @@ class VideoBarrageComponent extends React.Component {
   			}
 
         if (barrage.isInited) {
-          barrage.x -= (barrage.speed + 1.1);
+          barrage.x -= (barrage.speed / 10 + 1);
         } else {
           barrage.isInited = true;
           barrage.x = canvasWidth;
@@ -152,6 +167,10 @@ class VideoBarrageComponent extends React.Component {
     });
   }
 
+  /**
+   * [addText 给canvas绘制文字]
+   * @param {[type]} obj [description]
+   */
   addText(obj) {
     let canvas = this.refs.barrage;
     let context = canvas.getContext('2d');
@@ -164,19 +183,25 @@ class VideoBarrageComponent extends React.Component {
     let fontStyle = 'normal';
 
     // 添加文本
-    context.shadowColor = 'rgba(0,0,0,'+ (obj.opacity || this.refs.opacity.value) +')';
-  context.shadowBlur = 2;
+    context.shadowColor = 'rgba(0,0,0,'+ (obj.opacity || this.state.opacity) +')';
+    context.shadowBlur = 2;
     context.fillStyle = 'transparent';
     context.textBaseline = textBaseline;
     context.textAlign = textAlign;
     context.font = fontWeight + ' ' + fontStyle + ' ' + fontSize + 'px ' + fontFace;
     context.fillStyle = textFillColor;
     context.fillText(obj.value, obj.x, obj.y);
-}
+  }
 
+  /**
+   * [canvasRender canvas-一直绘制函数]
+   * @return {[type]} [description]
+   */
   canvasRender() {
     this.clearRect();
     this.draw();
+
+    // 如果暂停，不用再绘制
     if (this.isPause === false) {
       requestAnimationFrame(() => {
         this.canvasRender();
@@ -184,19 +209,42 @@ class VideoBarrageComponent extends React.Component {
     }
   }
 
-  handleChange(key) {
+  /**
+   * [handleChange 改变form原生，更新到state]
+   * @param  {[type]} e   [description]
+   * @param  {[type]} key [description]
+   * @return {[type]}     [description]
+   */
+  handleChange(e, key) {
+    this.setState({
+      [key]: e.target.value
+    });
     // debugger;
     // console.log(this.refs[key].value);
   }
 
+  /**
+   * [handleInput 文平输入控制，1 赋值state 2 更新按钮是否禁用]
+   * @param  {[type]} e [description]
+   * @return {[type]}   [description]
+   */
   handleInput(e) {
     let val = e.target.value;
+
+    this.setState({
+      value: val
+    });
 
     this.setState({
       canSubmit: !!val
     });
   }
 
+  /**
+   * [handleClick 添加弹幕，调用父方法]
+   * @param  {[type]} e [description]
+   * @return {[type]}   [description]
+   */
   handleClick(e) {
     let { addBarrage } = this.props;
 
@@ -204,21 +252,25 @@ class VideoBarrageComponent extends React.Component {
 
     if (addBarrage) {
       addBarrage({
-        value: this.refs.value.value,
+        value: this.state.value,
         time: this.refs.video.currentTime,
-        color: this.refs.color.value
+        color: this.state.color
       });
     }
 
-    this.refs.value.value = '';
+    this.setState({
+      value: ''
+    });
     this.setState({
       canSubmit: false
     });
   }
 
+  /**
+   * [render react 绚烂]
+   * @return {[type]} [description]
+   */
   render() {
-    let position = this.state.position;
-
     return (
       <div className="video-barrage">
         <canvas ref="barrage"></canvas>
@@ -229,8 +281,9 @@ class VideoBarrageComponent extends React.Component {
             <input
               ref="opacity"
               type="range"
-              onChange={(e) => this.handleChange('opacity')}
+              onChange={(e) => this.handleChange(e, 'opacity')}
               className="range"
+              value={this.state.opacity}
               min="0"
               max="100" />
             文字大小(16-32)：
@@ -238,7 +291,8 @@ class VideoBarrageComponent extends React.Component {
               ref="fontSize"
               type="range"
               className="range"
-              onChange={(e) => this.handleChange('fontSize')}
+              value={this.state.fontSize}
+              onChange={(e) => this.handleChange(e, 'fontSize')}
               min="16"
               max="32" />
           </p>
@@ -246,8 +300,8 @@ class VideoBarrageComponent extends React.Component {
             弹幕位置：
             <label className="radio-inline">
               <input
-                defaultChecked={position === 'all'}
-                onChange={(e) => this.handleChange('position')}
+                checked={this.state.position === 'all'}
+                onChange={(e) => this.handleChange(e, 'position')}
                 name="position"
                 type="radio"
                 value="all"
@@ -255,26 +309,31 @@ class VideoBarrageComponent extends React.Component {
             </label>
             <label className="radio-inline">
               <input
-                defaultChecked={position === 'top'}
-                onChange={(e) => this.handleChange('position')}
+                checked={this.state.position === 'top'}
+                onChange={(e) => this.handleChange(e, 'position')}
                 name="position"
                 type="radio"
                 value="top"/> 顶部
             </label>
             <label className="radio-inline">
               <input
-                defaultChecked={position === 'bottom'}
-                onChange={(e) => this.handleChange('position')}
+                checked={this.state.position === 'bottom'}
+                onChange={(e) => this.handleChange(e, 'position')}
                 name="position"
                 type="radio"
                 value="bottom"/> 底部
             </label>
           </p>
           <p className="last">
-            颜色：<input type="color" ref="color" />
+            颜色：<input
+                type="color"
+                ref="color"
+                value={this.state.color}
+                onChange={(e) => this.handleChange(e, 'color')} />
             文字：
             <input
               onInput={e => this.handleInput(e)}
+              value={this.state.value}
               className="ui-input"
               ref="value" required />
             <input

@@ -1,4 +1,15 @@
 /**
+ * @Author: weijie
+ * @Date:   2017-09-15T09:10:22+08:00
+ * @Email:  weijie@rongyi.com
+ * @Filename: defaults.js
+ * @Last modified by:   weijie
+ * @Last modified time: 2017-09-15T21:43:17+08:00
+ */
+
+
+
+/**
  * Function that returns default values.
  * Used because Object.assign does a shallow instead of a deep copy.
  * Using [].push will add to the base array, so a require will alter
