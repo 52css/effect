@@ -4,7 +4,7 @@
  * @Email:  weijie@rongyi.com
  * @Filename: Header.js
  * @Last modified by:   weijie
- * @Last modified time: 2017-09-16T10:47:05+08:00
+ * @Last modified time: 2017-09-18T09:43:46+08:00
  */
 
 
@@ -18,9 +18,12 @@
    <header className="page-header clearfix">
      <nav>
        <ul>
-         <li><Link to=''>Home</Link></li>
+         <li><Link to='/'>Home</Link></li>
          {/* <li><Link to='/test'>Test</Link></li> */}
-         <li><Link to='video-barrage'>VideoBarrage</Link></li>
+         <li><Link to='/video-barrage'>VideoBarrage</Link></li>
+         <li><Link to='/h5-preUpload-preview'>H5PreUploadPreview</Link></li>
+         <li><Link to='/webrtc'>WebRTC</Link></li>
+         <li><Link to='/animate-water-in-bottle'>AnimateWaterInBottle</Link></li>
        </ul>
      </nav>
    </header>

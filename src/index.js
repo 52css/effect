@@ -4,7 +4,7 @@
  * @Email:  weijie@rongyi.com
  * @Filename: index.js
  * @Last modified by:   weijie
- * @Last modified time: 2017-09-15T11:15:35+08:00
+ * @Last modified time: 2017-09-18T09:34:37+08:00
  */
 
 
@@ -14,8 +14,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter} from 'react-router-dom';
 import App from './containers/App';
-
-let pathname = location.pathname;
 
 // Render the main component into the dom
 ReactDOM.render((

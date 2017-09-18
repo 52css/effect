@@ -1,0 +1,48 @@
+/**
+ * @Author: weijie
+ * @Date:   2017-09-18T09:12:34+08:00
+ * @Email:  weijie@rongyi.com
+ * @Filename: index.less
+ * @Last modified by:   weijie
+ * @Last modified time: 2017-09-18T09:41:51+08:00
+ */
+ body {
+     background-color: #000;
+ }
+ .bottle-wrap {
+     width: 524px;
+     height: 1438px;
+     position: relative;
+ }
+ .water-wrap {
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     clip-path: url(#clipPath);
+ }
+ .water {
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     height: 50%;
+     /* background-color: yellow; */
+     background: url('./images/water.png');
+     background-position:0 0;
+     -webkit-animation:bpa 3s infinite linear ;
+ }
+ @-webkit-keyframes bpa {
+     0%{
+         background-position: 0 0;
+     }
+     100%{
+         background-position: -3627px 0;
+     }
+ }
+ .bottle {
+     position: absolute;
+     top: 0;
+     left: 0;
+ }

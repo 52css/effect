@@ -4,7 +4,7 @@
  * @Email:  weijie@rongyi.com
  * @Filename: Main.js
  * @Last modified by:   weijie
- * @Last modified time: 2017-09-15T13:56:17+08:00
+ * @Last modified time: 2017-09-18T09:43:56+08:00
  */
 
 
@@ -14,6 +14,8 @@
  import Home from './Home'
  // import Test from './Test'
  import VideoBarrage from 'containers/VideoBarrage'
+ import WebRTC from 'containers/WebRTC'
+ import AnimateWaterInBottle from 'containers/AnimateWaterInBottle'
 
  // The Main component renders one of the three provided
  // Routes (provided that one matches). Both the /roster
@@ -26,6 +28,8 @@
        <Route exact path='/' component={Home}/>
        {/* <Route path='/test' component={Test}/> */}
        <Route path='/video-barrage' component={VideoBarrage}/>
+       <Route path='/webrtc' component={WebRTC}/>
+       <Route path='/animate-water-in-bottle' component={AnimateWaterInBottle}/>
      </Switch>
    </main>
  )
