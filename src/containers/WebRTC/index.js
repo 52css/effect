@@ -4,7 +4,7 @@
  * @Email:  weijie@rongyi.com
  * @Filename: index.js
  * @Last modified by:   weijie
- * @Last modified time: 2017-09-18T09:52:30+08:00
+ * @Last modified time: 2017-09-18T22:40:31+08:00
  */
 
 
@@ -37,6 +37,7 @@ class WebRTCComponent extends React.Component {
     audioOutputSelect.onchange = this.changeAudioDestination;
     videoSelect.onchange = this.start;
 
+    // 取所有设备
     navigator
       .mediaDevices
       .enumerateDevices()
@@ -44,6 +45,12 @@ class WebRTCComponent extends React.Component {
     this.start();
   }
 
+  /**
+   * [attachSinkId 检查视频]
+   * @param  {[type]} element [description]
+   * @param  {[type]} sinkId  [description]
+   * @return {[type]}         [description]
+   */
   attachSinkId(element, sinkId) {
     let audioOutputSelect = this.refs.audioOutputSelect;
 
@@ -67,6 +74,10 @@ class WebRTCComponent extends React.Component {
     }
   }
 
+  /**
+   * [changeAudioDestination 改变视频源]
+   * @return {[type]} [description]
+   */
   changeAudioDestination() {
     let audioOutputSelect = this.refs.audioOutputSelect,
       videoElement = this.refs.video,
@@ -75,10 +86,19 @@ class WebRTCComponent extends React.Component {
     this.attachSinkId(videoElement, audioDestination);
   }
 
+  /**
+   * [handleError 处理异常]
+   * @param  {[type]} error [description]
+   * @return {[type]}       [description]
+   */
   handleError(error) {
     console.log('navigator.getUserMedia error: ', error);
   }
 
+  /**
+   * [start 开始后重新获取视频流]
+   * @return {[type]} [description]
+   */
   start() {
     let audioInputSelect = this.refs.audioInputSelect,
       videoSelect = this.refs.videoSelect;
@@ -102,6 +122,11 @@ class WebRTCComponent extends React.Component {
       .catch(this.handleError.bind(this));
   }
 
+  /**
+   * [gotStream 获取视频流]
+   * @param  {[type]} stream [description]
+   * @return {[type]}        [description]
+   */
   gotStream(stream) {
     let videoElement = this.refs.video;
 
@@ -111,6 +136,11 @@ class WebRTCComponent extends React.Component {
     return navigator.mediaDevices.enumerateDevices();
   }
 
+  /**
+   * [gotDevices 获取所有设备]
+   * @param  {[type]} deviceInfos [description]
+   * @return {[type]}             [description]
+   */
   gotDevices(deviceInfos) {
     let audioInputSelect = this.refs.audioInputSelect,
       audioOutputSelect = this.refs.audioOutputSelect,
