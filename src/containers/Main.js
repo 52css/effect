@@ -4,7 +4,7 @@
  * @Email:  weijie@rongyi.com
  * @Filename: Main.js
  * @Last modified by:   weijie
- * @Last modified time: 2017-09-18T09:43:56+08:00
+ * @Last modified time: 2017-09-18T10:45:34+08:00
  */
 
 
@@ -16,6 +16,7 @@
  import VideoBarrage from 'containers/VideoBarrage'
  import WebRTC from 'containers/WebRTC'
  import AnimateWaterInBottle from 'containers/AnimateWaterInBottle'
+ import PngIconColorFill from 'containers/PngIconColorFill'
 
  // The Main component renders one of the three provided
  // Routes (provided that one matches). Both the /roster
@@ -30,6 +31,7 @@
        <Route path='/video-barrage' component={VideoBarrage}/>
        <Route path='/webrtc' component={WebRTC}/>
        <Route path='/animate-water-in-bottle' component={AnimateWaterInBottle}/>
+       <Route path='/png-icon-color-fill' component={PngIconColorFill}/>
      </Switch>
    </main>
  )

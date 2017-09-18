@@ -4,7 +4,7 @@
  * @Email:  weijie@rongyi.com
  * @Filename: Header.js
  * @Last modified by:   weijie
- * @Last modified time: 2017-09-18T09:43:46+08:00
+ * @Last modified time: 2017-09-18T10:44:53+08:00
  */
 
 
@@ -24,6 +24,7 @@
          <li><Link to='/h5-preUpload-preview'>H5PreUploadPreview</Link></li>
          <li><Link to='/webrtc'>WebRTC</Link></li>
          <li><Link to='/animate-water-in-bottle'>AnimateWaterInBottle</Link></li>
+         <li><Link to='/png-icon-color-fill'>PngIconColorFill</Link></li>
        </ul>
      </nav>
    </header>
