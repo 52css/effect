@@ -32,6 +32,8 @@
          <i className="icon icon-del"></i>
          <p><strong>可以变色的图标</strong></p>
          <PngIconColorFill color={'red'} />
+         <PngIconColorFill color={'green'} />
+         <PngIconColorFill color={'blue'} />
        </div>
      );
    }

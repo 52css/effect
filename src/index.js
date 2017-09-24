@@ -7,12 +7,10 @@
  * @Last modified time: 2017-09-18T09:34:37+08:00
  */
 
-
-
 import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter} from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import App from './containers/App';
 
 // Render the main component into the dom
