@@ -1,3 +1,6 @@
-#effect
+### 发布到远程
 
-test12342134
+```bash
+git subtree push --prefix=dist origin gh-pages
+```
+
