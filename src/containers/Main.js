@@ -17,6 +17,7 @@
  import WebRTC from 'containers/WebRTC'
  import AnimateWaterInBottle from 'containers/AnimateWaterInBottle'
  import PngIconColorFill from 'containers/PngIconColorFill'
+ import SvgFlip from 'containers/SvgFlip'
 
  // The Main component renders one of the three provided
  // Routes (provided that one matches). Both the /roster
@@ -32,8 +33,9 @@
        <Route path='/webrtc' component={WebRTC}/>
        <Route path='/animate-water-in-bottle' component={AnimateWaterInBottle}/>
        <Route path='/png-icon-color-fill' component={PngIconColorFill}/>
+       <Route path='/svg-flip' component={SvgFlip}/>
      </Switch>
    </main>
- )
+ );
 
  export default Main

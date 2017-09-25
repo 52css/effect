@@ -25,9 +25,10 @@
          <li><Link to='/webrtc'>WebRTC</Link></li>
          <li><Link to='/animate-water-in-bottle'>AnimateWaterInBottle</Link></li>
          <li><Link to='/png-icon-color-fill'>PngIconColorFill</Link></li>
+         <li><Link to='/svg-flip'>SvgFlip</Link></li>
        </ul>
      </nav>
    </header>
- )
+ );
 
  export default Header
