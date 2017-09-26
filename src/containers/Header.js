@@ -18,14 +18,14 @@
    <header className="page-header clearfix">
      <nav>
        <ul>
-         <li><Link to='/'>Home</Link></li>
+         <li><Link to='/' activeStyle={{ color: 'red' }}>Home</Link></li>
          {/* <li><Link to='/test'>Test</Link></li> */}
-         <li><Link to='/video-barrage'>VideoBarrage</Link></li>
-         <li><Link to='/h5-preUpload-preview'>H5PreUploadPreview</Link></li>
-         <li><Link to='/webrtc'>WebRTC</Link></li>
-         <li><Link to='/animate-water-in-bottle'>AnimateWaterInBottle</Link></li>
-         <li><Link to='/png-icon-color-fill'>PngIconColorFill</Link></li>
-         <li><Link to='/svg-flip'>SvgFlip</Link></li>
+         <li><Link to='/video-barrage' activeStyle={{ color: 'red' }}>VideoBarrage</Link></li>
+         <li><Link to='/h5-preUpload-preview' activeStyle={{ color: 'red' }}>H5PreUploadPreview</Link></li>
+         <li><Link to='/webrtc' activeStyle={{ color: 'red' }}>WebRTC</Link></li>
+         <li><Link to='/animate-water-in-bottle' activeStyle={{ color: 'red' }}>AnimateWaterInBottle</Link></li>
+         <li><Link to='/png-icon-color-fill' activeStyle={{ color: 'red' }}>PngIconColorFill</Link></li>
+         <li><Link to='/svg-flip' activeStyle={{ color: 'red' }}>SvgFlip</Link></li>
        </ul>
      </nav>
    </header>
