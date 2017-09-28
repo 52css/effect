@@ -7,33 +7,38 @@
  * @Last modified time: 2017-09-18T13:40:30+08:00
  */
 
- import './index.less';
+import React, { Component, PropTypes } from 'react';
 
- import React, {Component} from 'react';
+import './index.less';
 
+class PngIconColorFillComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
- class PngIconColorFillComponent extends Component {
-   constructor(props) {
-     super(props);
-     this.state = {}
-   }
+  componentDidMount() {}
 
-   componentDidMount() {}
+  componentWillUnmount() {}
 
-   componentWillUnmount() {}
+  render() {
+    const {color} = this.props;
+    const iconStyle = {
+      filter: `drop-shadow(20px 0 ${color})`
+    };
 
-   render() {
-     let { color } = this.props,
-       iconStyle = {
-         filter: 'drop-shadow(20px 0 ' + color + ')'
-       };
+    return (
+      <div className="cp-png-icon-color-fill">
+        <i className="icon">
+          <i className="icon icon-del" style={iconStyle} />
+        </i>
+      </div>
+    );
+  }
+}
 
-     return (
-       <div className="cp-png-icon-color-fill">
-         <i className="icon"><i className="icon icon-del" style={iconStyle}></i></i>
-       </div>
-     );
-   }
- }
+PngIconColorFillComponent.propTypes = {
+  color: PropTypes.string
+};
 
- export default PngIconColorFillComponent;
+export default PngIconColorFillComponent;

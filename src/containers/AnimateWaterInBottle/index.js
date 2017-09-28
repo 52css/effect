@@ -18,7 +18,7 @@
    constructor(props) {
      super(props);
      this.state = {
-     }
+     };
    }
 
 
@@ -29,7 +29,7 @@
    render() {
      return (
        <div className="index">
-         <AnimateWaterInBottle></AnimateWaterInBottle>
+         <AnimateWaterInBottle />
        </div>
      );
    }

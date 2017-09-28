@@ -7,11 +7,9 @@
  * @Last modified time: 2017-09-18T22:40:31+08:00
  */
 
+import React, { Component } from 'react';
 
-
-import React from 'react';
-
-class WebRTCComponent extends React.Component {
+class WebRTCComponent extends Component {
   /**
    * [constructor 初始化弹幕]
    * @param  {[type]} props [description]
@@ -20,8 +18,7 @@ class WebRTCComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
-    }
+    };
   }
 
   /**
@@ -29,9 +26,9 @@ class WebRTCComponent extends React.Component {
    * @return {[type]} [description]
    */
   componentDidMount() {
-    let audioInputSelect = this.refs.audioInputSelect,
-      audioOutputSelect = this.refs.audioOutputSelect,
-      videoSelect = this.refs.videoSelect;
+    const audioInputSelect = this.audioInputSelect;
+    const audioOutputSelect = this.audioOutputSelect;
+    const videoSelect = this.videoSelect;
 
     audioInputSelect.onchange = this.start;
     audioOutputSelect.onchange = this.changeAudioDestination;
@@ -52,18 +49,17 @@ class WebRTCComponent extends React.Component {
    * @return {[type]}         [description]
    */
   attachSinkId(element, sinkId) {
-    let audioOutputSelect = this.refs.audioOutputSelect;
+    const audioOutputSelect = this.audioOutputSelect;
 
     if (typeof element.sinkId !== 'undefined') {
       element.setSinkId(sinkId)
-      .then(function() {
-        console.log('Success, audio output device attached: ' + sinkId);
+      .then(() => {
+        console.log(`Success, audio output device attached: ${sinkId}`);
       })
-      .catch(function(error) {
-        var errorMessage = error;
+      .catch((error) => {
+        let errorMessage = error;
         if (error.name === 'SecurityError') {
-          errorMessage = 'You need to use HTTPS for selecting audio output ' +
-              'device: ' + error;
+          errorMessage = `You need to use HTTPS for selecting audio output device: ${error}`;
         }
         console.error(errorMessage);
         // Jump back to first output device in the list as it's the default.
@@ -79,9 +75,9 @@ class WebRTCComponent extends React.Component {
    * @return {[type]} [description]
    */
   changeAudioDestination() {
-    let audioOutputSelect = this.refs.audioOutputSelect,
-      videoElement = this.refs.video,
-      audioDestination = audioOutputSelect.value;
+    const audioOutputSelect = this.audioOutputSelect;
+    const videoElement = this.video;
+    const audioDestination = audioOutputSelect.value;
 
     this.attachSinkId(videoElement, audioDestination);
   }
@@ -92,7 +88,7 @@ class WebRTCComponent extends React.Component {
    * @return {[type]}       [description]
    */
   handleError(error) {
-    console.log('navigator.getUserMedia error: ', error);
+    console.log(`navigator.getUserMedia error: ${error}`);
   }
 
   /**
@@ -100,17 +96,17 @@ class WebRTCComponent extends React.Component {
    * @return {[type]} [description]
    */
   start() {
-    let audioInputSelect = this.refs.audioInputSelect,
-      videoSelect = this.refs.videoSelect;
+    const audioInputSelect = this.audioInputSelect;
+    const videoSelect = this.videoSelect;
 
     if (window.stream) {
-      window.stream.getTracks().forEach(function(track) {
+      window.stream.getTracks().forEach((track) => {
         track.stop();
       });
     }
-    var audioSource = audioInputSelect.value;
-    var videoSource = videoSelect.value;
-    var constraints = {
+    const audioSource = audioInputSelect.value;
+    const videoSource = videoSelect.value;
+    const constraints = {
       audio: {deviceId: audioSource ? {exact: audioSource} : undefined},
       video: {deviceId: videoSource ? {exact: videoSource} : undefined}
     };
@@ -128,7 +124,7 @@ class WebRTCComponent extends React.Component {
    * @return {[type]}        [description]
    */
   gotStream(stream) {
-    let videoElement = this.refs.video;
+    const videoElement = this.video;
 
     window.stream = stream; // make stream available to console
     videoElement.srcObject = stream;
@@ -142,44 +138,52 @@ class WebRTCComponent extends React.Component {
    * @return {[type]}             [description]
    */
   gotDevices(deviceInfos) {
-    let audioInputSelect = this.refs.audioInputSelect,
-      audioOutputSelect = this.refs.audioOutputSelect,
-      videoSelect = this.refs.videoSelect,
-      selectors = [audioInputSelect, audioOutputSelect, videoSelect];
+    const audioInputSelect = this.audioInputSelect;
+    const audioOutputSelect = this.audioOutputSelect;
+    const videoSelect = this.videoSelect;
+    const selectors = [audioInputSelect, audioOutputSelect, videoSelect];
     // Handles being called several times to update labels. Preserve values.
-    var values = selectors.map(function(select) {
-      return select.value;
+    const values = selectors.map((select) => {
+      const newSelect = select;
+
+      return newSelect.value;
     });
-    selectors.forEach(function(select) {
+    selectors.forEach((select) => {
       while (select.firstChild) {
         select.removeChild(select.firstChild);
       }
     });
-    for (var i = 0; i !== deviceInfos.length; ++i) {
-      var deviceInfo = deviceInfos[i];
-      var option = document.createElement('option');
+    for (let i = 0; i !== deviceInfos.length; i += 1) {
+      const deviceInfo = deviceInfos[i];
+      const option = document.createElement('option');
       option.value = deviceInfo.deviceId;
       if (deviceInfo.kind === 'audioinput') {
         option.text = deviceInfo.label ||
-            'microphone ' + (audioInputSelect.length + 1);
+          `microphone ${audioInputSelect.length + 1}`;
         audioInputSelect.appendChild(option);
       } else if (deviceInfo.kind === 'audiooutput') {
-        option.text = deviceInfo.label || 'speaker ' +
-            (audioOutputSelect.length + 1);
+        option.text = deviceInfo.label ||
+          `speaker ${audioOutputSelect.length + 1}`;
         audioOutputSelect.appendChild(option);
       } else if (deviceInfo.kind === 'videoinput') {
-        option.text = deviceInfo.label || 'camera ' + (videoSelect.length + 1);
+        option.text = deviceInfo.label || `camera ${videoSelect.length + 1}`;
         videoSelect.appendChild(option);
       } else {
-        console.log('Some other kind of source/device: ', deviceInfo);
+        console.log(`Some other kind of source/device: ${deviceInfo}`);
       }
     }
-    selectors.forEach(function(select, selectorIndex) {
-      if (Array.prototype.slice.call(select.childNodes).some(function(n) {
+    selectors.forEach((oldSelect, selectorIndex) => {
+      const select = oldSelect;
+
+      if (Array.prototype.slice.call(select.childNodes).some((oldN) => {
+        const n = oldN;
+
         return n.value === values[selectorIndex];
       })) {
         select.value = values[selectorIndex];
       }
+
+      selectors[selectorIndex] = select;
     });
   }
 
@@ -192,20 +196,20 @@ class WebRTCComponent extends React.Component {
       <div className="index">
         <div className="select">
           <label htmlFor="audioSource">Audio input source: </label>
-          <select ref="audioInputSelect"></select>
+          <select ref={(c) => { this.audioInputSelect = c; }} />
         </div>
 
         <div className="select">
           <label htmlFor="audioOutput">Audio output destination: </label>
-          <select ref="audioOutputSelect"></select>
+          <select ref={(c) => { this.audioOutputSelect = c; }} />
         </div>
 
         <div className="select">
           <label htmlFor="videoSource">Video source: </label>
-          <select ref="videoSelect"></select>
+          <select ref={(c) => { this.videoSelect = c; }} />
         </div>
 
-        <video ref="video" autoPlay></video>
+        <video ref={(c) => { this.video = c; }} autoPlay />
       </div>
     );
   }

@@ -1,32 +1,33 @@
 'use strict';
 
-const path = require('path');
-const args = require('minimist')(process.argv.slice(2));
+/* eslint no-console: "off" */
+const webpackConfigs = require('./conf/webpack');
+const defaultConfig = 'dev';
 
-// List of allowed environments
-const allowedEnvs = ['dev', 'dist', 'test'];
+module.exports = (configName) => {
 
-// Set the correct environment
-let env;
-if (args._.length > 0 && args._.indexOf('start') !== -1) {
-  env = 'test';
-} else if (args.env) {
-  env = args.env;
-} else {
-  env = 'dev';
-}
-process.env.REACT_WEBPACK_ENV = env;
+  // If there was no configuration give, assume default
+  const requestedConfig = configName || defaultConfig;
 
-/**
- * Build the webpack configuration
- * @param  {String} wantedEnv The wanted environment
- * @return {Object} Webpack config
- */
-function buildConfig(wantedEnv) {
-  let isValid = wantedEnv && wantedEnv.length > 0 && allowedEnvs.indexOf(wantedEnv) !== -1;
-  let validEnv = isValid ? wantedEnv : 'dev';
-  let config = require(path.join(__dirname, 'cfg/' + validEnv));
-  return config;
-}
+  // Return a new instance of the webpack config
+  // or the default one if it cannot be found.
+  let LoadedConfig = defaultConfig;
 
-module.exports = buildConfig(env);
+  if (webpackConfigs[requestedConfig] !== undefined) {
+    LoadedConfig = webpackConfigs[requestedConfig];
+  } else {
+    console.warn(`
+      Provided environment "${configName}" was not found.
+      Please use one of the following ones:
+      ${Object.keys(webpackConfigs).join(' ')}
+    `);
+    LoadedConfig = webpackConfigs[defaultConfig];
+  }
+
+  const loadedInstance = new LoadedConfig();
+
+  // Set the global environment
+  process.env.NODE_ENV = loadedInstance.env;
+
+  return loadedInstance.config;
+};

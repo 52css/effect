@@ -10,11 +10,10 @@ import SvgFlip from 'components/SvgFlip';
 
 import './index.less';
 
-
 class SvgFlipComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
 
   componentDidMount() {}

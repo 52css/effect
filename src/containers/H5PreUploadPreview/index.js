@@ -7,8 +7,6 @@
  * @Last modified time: 2017-09-18T09:58:49+08:00
  */
 
-
-
 import React from 'react';
 import H5PreUploadPreview from 'components/H5PreUploadPreview';
 
@@ -21,7 +19,7 @@ class H5PreUploadPreviewComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    }
+    };
   }
 
 
@@ -33,7 +31,7 @@ class H5PreUploadPreviewComponent extends React.Component {
     return (
       <div className="index">
         <h1>h5 上传前预览</h1>
-        <H5PreUploadPreview></H5PreUploadPreview>
+        <H5PreUploadPreview />
       </div>
     );
   }

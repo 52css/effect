@@ -1,0 +1,134 @@
+/*
+* @Author: weijie
+* @Date:   2017-09-26 22:26:04
+* @Last Modified by:   weijie
+* @Last Modified time: 2017-09-26 22:27:29
+*/
+// EditAble
+
+.cp-edit-able {
+  // position: relative;
+  &.ui-move {
+      cursor: move;
+  }
+  &.can-edit:hover {
+      outline: 1px dashed #fff;
+  }
+  &.can-edit.is-click {
+      outline: 1px dashed #56a1e3;
+      // outline: 1px dashed red;
+      .ui-btn {
+          display: block;
+      }
+  }
+  &.is-move {
+      opacity: 0.7;
+      z-index: 1;
+  }
+  .ui-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      // overflow: hidden;
+      .can-edit & {
+          cursor: move;
+      }
+  }
+  .ui-resizable {
+      position: absolute;
+      background-image: url('images/imgResizeIcon.gif');
+      background-repeat: no-repeat;
+  }
+  .ui-resizable-n {
+      top: -2px;
+      cursor: s-resize;
+      height: 9px;
+      left: 0;
+      width: 100%;
+      background-position: 50% 49%;
+  }
+  .ui-resizable-e {
+      cursor: e-resize;
+      height: 100%;
+      top: 0;
+      width: 9px;
+      right: -2px;
+      background-position: 49% 50%;
+  }
+  .ui-resizable-s {
+      bottom: -2px;
+      cursor: s-resize;
+      height: 9px;
+      left: 0;
+      width: 100%;
+      background-position: 50% 50%;
+  }
+  .ui-resizable-w {
+      cursor: e-resize;
+      height: 100%;
+      left: -2px;
+      top: 0;
+      width: 9px;
+      background-position: 49% 50%;
+  }
+  .ui-resizable-ne {
+      cursor: ne-resize;
+      right: 0;
+      top: 0;
+      background-position: 11px 1px;
+      width: 16px;
+      height: 16px;
+  }
+  .ui-resizable-nw {
+      cursor: nw-resize;
+      left: 0;
+      top: 0;
+      background-position: 0 0;
+      width: 16px;
+      height: 16px;
+  }
+  .ui-resizable-sw {
+      cursor: sw-resize;
+      left: 0;
+      bottom: 0;
+      background-position: 0 11px;
+      width: 16px;
+      height: 16px;
+  }
+  .ui-resizable-se {
+      cursor: se-resize;
+      right: 0;
+      bottom: 0;
+      background-position: 11px 11px;
+      width: 16px;
+      height: 16px;
+  }
+  .ui-recover {
+      position: absolute;
+      right: 3px;
+      cursor: pointer;
+      bottom: 3px;
+      width: 24px;
+      height: 20px;
+      background: url(images/recover1.gif) no-repeat;
+  }
+  .ui-btns {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translateY(-100%);
+      font-size: 12px;
+      z-index: 2;
+      .ui-btn {
+          float: left;
+          background-color: #56a1e3;
+          height: 24px;
+          color: #fff;
+          line-height: 24px;
+          padding: 0 3px;
+          white-space: nowrap;
+      }
+  }
+}
