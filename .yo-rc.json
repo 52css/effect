@@ -1,3 +1,9 @@
 {
-  "generator-react-webpack": {}
+  "generator-react-webpack": {
+    "appName": "effect2",
+    "style": "less",
+    "cssmodules": false,
+    "postcss": false,
+    "generatedWithVersion": 4
+  }
 }
