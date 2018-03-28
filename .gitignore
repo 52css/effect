@@ -29,8 +29,6 @@ node_modules
 # Bower
 bower_components/
 
-# Dist folder
-dist/
 
 # IDE/Editor data
 .idea/
