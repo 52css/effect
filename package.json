@@ -15,7 +15,7 @@
     "lint": "eslint ./src",
     "clean": "rimraf dist/*",
     "publish": "git subtree push --prefix=dist origin coding-pages",
-    "publish-github": "git subtree push --prefix=dist github-effect gh-pages",
+    "publish-github": "git subtree push --prefix=dist origin gh-pages",
     "copy": "copyfiles -f ./src/index.html ./dist && copyfiles -u 1 \"./src/static/**\" ./dist",
     "release:major": "npm version prerelease && git push --follow-tags && npm publish --tag beta",
     "release:minor": "npm version prerelease && git push --follow-tags && npm publish --tag beta",
