@@ -2,10 +2,10 @@
  * @Author: weijie
  * @Date:   2018-03-28 21:32:52
  * @Last Modified by:   weijie
- * @Last Modified time: 2018-03-29 05:49:53
+ * @Last Modified time: 2018-03-29 09:34:53
  */
 /**
- * [getBase64 description]
+ * [getBase64 转换url为base64]
  * @param  {[type]} url [description]
  * @return {[type]}     [description]
  */
@@ -17,7 +17,7 @@ export default function getBase64(url) {
 }
 
 /**
- * [parseExtension description]
+ * [parseExtension 处理后缀]
  * @param  {[type]} url [description]
  * @return {[type]}     [description]
  */
@@ -29,7 +29,7 @@ function parseExtension(url) {
   return '';
 }
 /**
- * [mimes description]
+ * [mimes 通用mime]
  * @return {[type]} [description]
  */
 function mimes() {
@@ -56,7 +56,7 @@ function mimes() {
 }
 
 /**
- * [mimeType description]
+ * [mimeType 获取mime类型]
  * @param  {[type]} url [description]
  * @return {[type]}     [description]
  */
@@ -66,7 +66,7 @@ function mimeType(url) {
 }
 
 /**
- * [dataAsUrl description]
+ * [dataAsUrl 转换base64]
  * @param  {[type]} content [description]
  * @param  {[type]} type    [description]
  * @return {[type]}         [description]
@@ -75,7 +75,7 @@ function dataAsUrl(content, type) {
   return `data:${type};base64,${content}`;
 }
 /**
- * [getAndEncode description]
+ * [getAndEncode 通过获取流形式来得到数据]
  * @param  {[type]} url [description]
  * @return {[type]}     [description]
  */
