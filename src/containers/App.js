@@ -21,6 +21,7 @@ import PngIconColorFill from './PngIconColorFill';
 import SvgFlip from './SvgFlip';
 import EditAble from './EditAble';
 import PicToBase64 from './PicToBase64';
+import Test from './Test';
 import '../styles/app.css';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
         <Route path="/svg-flip" component={SvgFlip}/>
         <Route path="/effect-editable" component={EditAble}/>
         <Route path="/pic-to-base64" component={PicToBase64}/>
+        <Route path="/test" component={Test}/>
       </Switch>
     </HashRouter>);
   }
