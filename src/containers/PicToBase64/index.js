@@ -1,8 +1,8 @@
 /*
 * @Author: weijie
 * @Date:   2018-03-28 21:31:06
-* @Last Modified by:   weijie
-* @Last Modified time: 2018-03-28 21:31:16
+ * @Last Modified by: weijie
+ * @Last Modified time: 2018-10-12 11:36:43
 */
 import React, {Component} from 'react';
 import PicToBase64 from 'components/PicToBase64';
